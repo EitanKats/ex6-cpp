@@ -5,9 +5,30 @@
 #ifndef EX6_CPP_SCHEDULE_HPP
 #define EX6_CPP_SCHEDULE_HPP
 
-namespace ex6{
+
+#include "tuple"
+#include "vector"
+
+namespace ex6 {
 
     class Schedule {
+    private:
+
+        size_t _totalTeams;
+        std::vector<std::tuple<int, int>> rounds;
+
+        //total number of games should be n/2(n-1)
+        void registerRound(const std::vector<int> topTeams, const std::vector<int> botTeams);
+
+    public:
+        const std::vector<std::tuple<int, int>> &getRounds() const;
+
+        Schedule(size_t _totalTeams);
+
+
+    private:
+
+        void createRounds();
 
     };
 }

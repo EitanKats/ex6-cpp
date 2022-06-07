@@ -10,14 +10,19 @@
 #include "Team.hpp"
 #include "string"
 #include "vector"
+#include "Schedule.hpp"
 
 namespace ex6 {
     class League {
     private:
-        std::unordered_set<std::string> teamNames;
-        std::vector<std::shared_ptr<Team>> Teams;
+        std::unordered_set<std::string> _teamNames;
+        std::vector<std::shared_ptr<Team>> _teams;
+        Schedule _leagueSchedule;
 
+    private:
         std::string createTeamName();
+
+        void generateGames();
 
     public:
         void fillTeams();
@@ -25,6 +30,10 @@ namespace ex6 {
         League &addTeam(Team &team);
 
         League &addTeam(const std::shared_ptr<Team> &team);
+
+        const Schedule &getLeagueSchedule() const;
+
+        const std::unordered_set<std::string> &getTeamNames() const;
 
         League();
 

@@ -3,6 +3,7 @@
 //
 
 #include "./sources/League.hpp"
+#include "./sources/Schedule.hpp"
 
 using namespace ex6;
 
@@ -14,5 +15,6 @@ int main() {
     elLeague.addTeam(a);
     elLeague.addTeam(b);
     elLeague.fillTeams();
+
     return 1;
 }
