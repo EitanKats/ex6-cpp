@@ -5,10 +5,21 @@
 #ifndef EX6_CPP_TEAM_HPP
 #define EX6_CPP_TEAM_HPP
 
+#include "string"
 
-class Team {
+namespace ex6 {
 
-};
+    class Team {
+    private:
+        double _talent_level;
+        std::string _teamName;
+    public:
+        const std::string &getTeamName() const;
+
+        Team(double talent_level, std::string teamName);
+
+    };
+}
 
 
 #endif //EX6_CPP_TEAM_HPP
