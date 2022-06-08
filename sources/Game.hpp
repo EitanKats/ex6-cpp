@@ -5,10 +5,22 @@
 #ifndef EX6_CPP_GAME_HPP
 #define EX6_CPP_GAME_HPP
 
-namespace ex6{
+#include "Team.hpp"
+#include "memory"
+
+namespace ex6 {
 
     class Game {
+    private:
+        std::shared_ptr<Team> _hostTeam;
+        std::shared_ptr<Team> _guestTeam;
 
+        void handleGameResults(int homeScore, int guestScore);
+
+        void generateGameResult();
+
+    public:
+        Game(std::shared_ptr<Team> hostTeam, std::shared_ptr<Team> guestTeam);
     };
 }
 

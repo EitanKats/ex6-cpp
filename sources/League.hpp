@@ -20,12 +20,13 @@ namespace ex6 {
         Schedule _leagueSchedule;
 
     private:
-        std::string createTeamName();
+        std::string generateRandomTeamName();
 
-        void generateGames();
+        void fillTeams();
 
     public:
-        void fillTeams();
+
+        void executeLeagueGames();
 
         League &addTeam(Team &team);
 

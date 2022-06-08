@@ -32,6 +32,7 @@ namespace ex6 {
 
         void increaseTotalOpponentScores(int opponentsPoints);
 
+        double getTalentLevel() const;
     };
 }
 

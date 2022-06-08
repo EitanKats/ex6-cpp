@@ -21,7 +21,6 @@ TEST_CASE ("Check league creation") {
         elLeague.addTeam(b);
     }
             SUBCASE("check fill works") {
-        elLeague.fillTeams();
                 CHECK(elLeague.getTeamNames().size() == 20);
     }
 }
@@ -41,5 +40,8 @@ TEST_CASE ("test schedule") {
             seti.insert(shpring);
         }
     }
+    std::cout << rounds.size() << std::endl;
             CHECK(rounds.size() == 380);
+
+    leagueSample.executeLeagueGames();
 }

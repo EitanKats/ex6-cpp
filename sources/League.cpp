@@ -5,6 +5,8 @@
 #include "League.hpp"
 #include "memory"
 #include "random"
+#include "Game.hpp"
+#include "iostream"
 
 const int TOTAL_TEAMS = 20;
 
@@ -35,12 +37,14 @@ namespace ex6 {
         std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
         std::uniform_real_distribution<> dis(0.0, 1.0);
         while (this->_teamNames.size() < TOTAL_TEAMS) {
-            std::shared_ptr<Team> teamPtr = std::make_shared<Team>(dis(gen), createTeamName());
+            double currentTalent = dis(gen);
+            currentTalent = currentTalent < 0.1 ? currentTalent + 0.1 : currentTalent;
+            std::shared_ptr<Team> teamPtr = std::make_shared<Team>(dis(gen), generateRandomTeamName());
             this->addTeam(teamPtr);
         }
     }
 
-    std::string League::createTeamName() {
+    std::string League::generateRandomTeamName() {
         std::string str("0123456789abcdefghijklmnopqrstuvwxyz");
 
         std::random_device rd;
@@ -65,6 +69,17 @@ namespace ex6 {
 
     const Schedule &League::getLeagueSchedule() const {
         return _leagueSchedule;
+    }
+
+    void League::executeLeagueGames() {
+        for (std::tuple<int, int> match: this->_leagueSchedule.getRounds()) {
+            const auto [a, b] = match;
+            auto homeIdx = (size_t) a;
+            auto guestIdx = (size_t) b;
+            Game currGame{this->_teams.at(homeIdx), this->_teams.at(guestIdx)};
+            int k = 12;
+
+        }
     }
 }
 

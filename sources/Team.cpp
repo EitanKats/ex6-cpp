@@ -39,4 +39,8 @@ namespace ex6 {
     void Team::increaseTotalOpponentScores(int opponentsPoints) {
         this->totalOpponentScores += opponentsPoints;
     }
+
+    double Team::getTalentLevel() const {
+        return _talent_level;
+    }
 }
