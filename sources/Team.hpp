@@ -19,6 +19,12 @@ namespace ex6 {
         int loseCounter = 0;
         int totalPointsScored = 0;
         int totalOpponentScores = 0;
+    public:
+        int getWinStreak() const;
+
+        int getLoseStreak() const;
+
+    private:
         int totalWins = 0;
         int totalLosses = 0;
     public:

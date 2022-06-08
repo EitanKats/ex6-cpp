@@ -26,6 +26,12 @@ namespace ex6 {
 
         void sortResults();
 
+        void displayLongestWinStreak();
+
+        void displayLongestLoseStreak();
+
+        //more points scored the taken
+        void displayAmountOfTeamsWithGoodScoreRatio();
 
         League &addTeam(Team &team);
 
@@ -43,7 +49,7 @@ namespace ex6 {
 
         League();
 
-        League(const std::vector<std::shared_ptr<Team>>& teams);
+        League(const std::vector<std::shared_ptr<Team>> &teams);
     };
 }
 

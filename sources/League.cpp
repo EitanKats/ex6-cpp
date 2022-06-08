@@ -88,10 +88,13 @@ namespace ex6 {
 
     void League::displayScores(size_t toDisplay) {
         std::cout << "Team name" << ",\t\t" << "Wins" << ",\t" << "Losses" << ",\t" << "Total points" << std::endl;
-        size_t toPrint = std::min(this->_teams.size(), toDisplay);
+        size_t toPrint = std::min(this->_teams.size() - 1, toDisplay);
         for (size_t i = this->_teams.size() - 1; i > this->_teams.size() - 1 - toPrint; --i) {
             std::cout << *(this->_teams.at(i)) << std::endl;
         }
+        displayLongestWinStreak();
+        displayLongestLoseStreak();
+        displayAmountOfTeamsWithGoodScoreRatio();
     }
 
     void League::sortResults() {
@@ -107,6 +110,36 @@ namespace ex6 {
                           return teamAPointsDiff < teamBPointsDiff;
                       }
                   });
+    }
+
+    void League::displayLongestLoseStreak() {
+        int longestWinStreak = 0;
+        for (const auto &team: this->_teams) {
+            if (team->getWinStreak() > longestWinStreak) {
+                longestWinStreak = team->getWinStreak();
+            }
+        }
+        std::cout << "longest win streak: " << longestWinStreak << std::endl;
+    }
+
+    void League::displayLongestWinStreak() {
+        int longestLoseStreak = 0;
+        for (const auto &team: this->_teams) {
+            if (team->getLoseStreak() > longestLoseStreak) {
+                longestLoseStreak = team->getLoseStreak();
+            }
+        }
+        std::cout << "longest lose streak: " << longestLoseStreak << std::endl;
+    }
+
+    void League::displayAmountOfTeamsWithGoodScoreRatio() {
+        int successfulTeamCounter = 0;
+        for (const auto &team: this->_teams) {
+            if (team->getTotalPointsScored() > team->getTotalOpponentScores()) {
+                ++successfulTeamCounter;
+            }
+        }
+        std::cout << "Team with more wins than losses: " << successfulTeamCounter << std::endl;
     }
 }
 

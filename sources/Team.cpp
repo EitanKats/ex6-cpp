@@ -73,4 +73,12 @@ namespace ex6 {
         return os;
     }
 
+    int Team::getWinStreak() const {
+        return winStreak;
+    }
+
+    int Team::getLoseStreak() const {
+        return loseStreak;
+    }
+
 }
