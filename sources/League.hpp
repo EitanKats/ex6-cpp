@@ -24,13 +24,18 @@ namespace ex6 {
 
         void fillTeams();
 
-    public:
+        void sortResults();
 
-        void executeLeagueGames();
 
         League &addTeam(Team &team);
 
         League &addTeam(const std::shared_ptr<Team> &team);
+
+    public:
+
+        void displayScores(size_t toDisplay);
+
+        void executeLeagueGames();
 
         const Schedule &getLeagueSchedule() const;
 
@@ -38,7 +43,7 @@ namespace ex6 {
 
         League();
 
-        League(std::vector<std::shared_ptr<Team>> teams);
+        League(const std::vector<std::shared_ptr<Team>>& teams);
     };
 }
 

@@ -16,22 +16,22 @@ namespace ex6 {
         std::random_device rd{};
         std::mt19937 gen{rd()};
 
-        std::normal_distribution<> homeScoreDist{65, 5};
-        std::normal_distribution<> guestScoreDist{60, 5};
+        std::normal_distribution<> homeScoreDist{75, 5};
+        std::normal_distribution<> guestScoreDist{70, 5};
 
-        int homeScore = 0;
-        int guestScore = 0;
+        double homeScore = 0;
+        double guestScore = 0;
 
-        while (homeScore < 55 and guestScore < 55) {
+        while (homeScore < 55 and guestScore < 50) {
             homeScore = std::round(homeScoreDist(gen));
             guestScore = std::round(guestScoreDist(gen));
         }
-        std::uniform_int_distribution bonusDistribution(1, 100);
+        std::uniform_int_distribution bonusDistribution(1, 10);
         double bonus = bonusDistribution(gen);
 
-        guestScore += std::round(_guestTeam->getTalentLevel() * (bonus / 10));
-        homeScore += std::round(_hostTeam->getTalentLevel() * (bonus / 10));
-        handleGameResults(homeScore, guestScore);
+        guestScore += std::round(_guestTeam->getTalentLevel() * bonus);
+        homeScore += std::round(_hostTeam->getTalentLevel() * bonus);
+        handleGameResults((int) homeScore, (int) guestScore);
 
     }
 

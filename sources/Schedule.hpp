@@ -18,7 +18,7 @@ namespace ex6 {
         std::vector<std::tuple<int, int>> rounds;
 
         //total number of games should be n/2(n-1)
-        void registerRound(const std::vector<int> topTeams, const std::vector<int> botTeams);
+        void registerRound(const std::vector<int>& topTeams, const std::vector<int>& botTeams);
 
     public:
         const std::vector<std::tuple<int, int>> &getRounds() const;

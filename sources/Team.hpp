@@ -19,12 +19,18 @@ namespace ex6 {
         int loseCounter = 0;
         int totalPointsScored = 0;
         int totalOpponentScores = 0;
+        int totalWins = 0;
+        int totalLosses = 0;
     public:
         const std::string &getTeamName() const;
 
         Team(double talent_level, std::string teamName);
 
         void increaseWinCounter();
+
+        int getTotalPointsScored() const;
+
+        int getTotalOpponentScores() const;
 
         void increaseLoseCounter();
 
@@ -33,6 +39,12 @@ namespace ex6 {
         void increaseTotalOpponentScores(int opponentsPoints);
 
         double getTalentLevel() const;
+
+        int getTotalWins() const;
+
+        int getTotalLosses() const;
+
+        friend std::ostream &operator<<(std::ostream &os, const Team &currTeam);
     };
 }
 

@@ -3,7 +3,6 @@
 //
 
 #include "Schedule.hpp"
-#include "iostream"
 #include "algorithm"
 #include "exception"
 
@@ -43,7 +42,7 @@ namespace ex6 {
         }
     }
 
-    void Schedule::registerRound(const std::vector<int> topTeams, const std::vector<int> botTeams) {
+    void Schedule::registerRound(const std::vector<int>& topTeams, const std::vector<int>& botTeams) {
         size_t total_teams = std::min(topTeams.size(), botTeams.size());
         for (size_t i = 0; i < total_teams; ++i) {
             this->rounds.emplace_back(topTeams[i], botTeams[i]);

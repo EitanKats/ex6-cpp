@@ -6,15 +6,18 @@
 #include "memory"
 #include "random"
 #include "Game.hpp"
+#include "algorithm"
 #include "iostream"
+#include "cmath"
 
 const int TOTAL_TEAMS = 20;
 
 namespace ex6 {
 
-    League::League(std::vector<std::shared_ptr<Team>> teams) : _teams(teams), _leagueSchedule(TOTAL_TEAMS) {
-        for (size_t i = 0; i < teams.size(); ++i) {
-            this->_teamNames.insert(teams[i]->getTeamName());
+
+    League::League(const std::vector<std::shared_ptr<Team>> &teams) : _teams(teams), _leagueSchedule(TOTAL_TEAMS) {
+        for (auto &team: teams) {
+            this->_teamNames.insert(team->getTeamName());
         }
         this->fillTeams();
     }
@@ -39,7 +42,7 @@ namespace ex6 {
         while (this->_teamNames.size() < TOTAL_TEAMS) {
             double currentTalent = dis(gen);
             currentTalent = currentTalent < 0.1 ? currentTalent + 0.1 : currentTalent;
-            std::shared_ptr<Team> teamPtr = std::make_shared<Team>(dis(gen), generateRandomTeamName());
+            std::shared_ptr<Team> teamPtr = std::make_shared<Team>(currentTalent, generateRandomTeamName());
             this->addTeam(teamPtr);
         }
     }
@@ -72,14 +75,38 @@ namespace ex6 {
     }
 
     void League::executeLeagueGames() {
+
         for (std::tuple<int, int> match: this->_leagueSchedule.getRounds()) {
             const auto [a, b] = match;
             auto homeIdx = (size_t) a;
             auto guestIdx = (size_t) b;
             Game currGame{this->_teams.at(homeIdx), this->_teams.at(guestIdx)};
-            int k = 12;
 
         }
+        sortResults();
+    }
+
+    void League::displayScores(size_t toDisplay) {
+        std::cout << "Team name" << ",\t\t" << "Wins" << ",\t" << "Losses" << ",\t" << "Total points" << std::endl;
+        size_t toPrint = std::min(this->_teams.size(), toDisplay);
+        for (size_t i = this->_teams.size() - 1; i > this->_teams.size() - 1 - toPrint; --i) {
+            std::cout << *(this->_teams.at(i)) << std::endl;
+        }
+    }
+
+    void League::sortResults() {
+        std::sort(this->_teams.begin(), this->_teams.end(),
+                  [](const std::shared_ptr<Team> &a, const std::shared_ptr<Team> &b) {
+                      double teamARatio = (double) a->getTotalWins() / a->getTotalLosses();
+                      double teamBRatio = (double) b->getTotalWins() / b->getTotalLosses();
+                      if (teamARatio != teamBRatio) {
+                          return teamARatio < teamBRatio;
+                      } else {
+                          int teamAPointsDiff = a->getTotalWins() - a->getTotalLosses();
+                          int teamBPointsDiff = b->getTotalWins() - b->getTotalLosses();
+                          return teamAPointsDiff < teamBPointsDiff;
+                      }
+                  });
     }
 }
 

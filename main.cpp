@@ -10,11 +10,7 @@ using namespace ex6;
 int main() {
 
     League elLeague;
-    Team a{0.3, "PEDRO"};
-    Team b{0.5, "PEDRO"};
-    elLeague.addTeam(a);
-    elLeague.addTeam(b);
-    elLeague.fillTeams();
-
+    elLeague.executeLeagueGames();
+    elLeague.displayScores(20);
     return 1;
 }
