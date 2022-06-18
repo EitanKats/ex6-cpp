@@ -122,4 +122,7 @@ TEST_CASE ("league execution test") {
             CHECK_NOTHROW(testLeague.executeLeagueGames());
             CHECK_NOTHROW(testLeague.displayScores(1));
             CHECK_NOTHROW(testLeague.displayScores(4));
+            CHECK_NOTHROW(testLeague.displayLongestWinStreak());
+            CHECK_NOTHROW(testLeague.displayLongestLoseStreak());
+
 }

@@ -3,7 +3,6 @@
 //
 
 #include "./sources/League.hpp"
-#include "./sources/Schedule.hpp"
 
 using namespace ex6;
 

@@ -26,10 +26,6 @@ namespace ex6 {
 
         void sortResults();
 
-        void displayLongestWinStreak();
-
-        void displayLongestLoseStreak();
-
         //more points scored the taken
         void displayAmountOfTeamsWithGoodScoreRatio();
 
@@ -38,6 +34,10 @@ namespace ex6 {
         League &addTeam(const std::shared_ptr<Team> &team);
 
     public:
+
+        void displayLongestWinStreak();
+
+        void displayLongestLoseStreak();
 
         void displayScores(size_t toDisplay);
 
