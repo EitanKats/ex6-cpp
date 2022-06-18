@@ -15,6 +15,10 @@ namespace ex6 {
 
     Team::Team(double talent_level, std::string teamName) : _talent_level(talent_level),
                                                             _teamName(std::move(teamName)) {
+        if (talent_level < 0 or talent_level > 1) {
+            throw std::runtime_error("Talent should be between 0 and 1");
+        }
+        validateName();
 
     }
 
@@ -79,6 +83,12 @@ namespace ex6 {
 
     int Team::getLoseStreak() const {
         return loseStreak;
+    }
+
+    void Team::validateName() {
+        for (const char &currC: _teamName) {
+            if (!(bool) std::isprint(currC)) { throw std::runtime_error("Illegal character"); }
+        }
     }
 
 }

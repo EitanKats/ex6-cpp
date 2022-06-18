@@ -12,6 +12,24 @@
 
 using namespace ex6;
 
+void badTeam() {
+    Team a{1.1, "asdf"};
+}
+
+void badTeamNegativeTalent() {
+    Team a{-1, "asdf"};
+}
+
+void badTeamName() {
+    Team a{-1, "asd\x01"};
+}
+
+TEST_CASE ("Check team creation") {
+            CHECK_THROWS(badTeam());
+            CHECK_THROWS(badTeamNegativeTalent());
+            CHECK_THROWS(badTeamName());
+}
+
 TEST_CASE ("Check league creation") {
 
             SUBCASE("two teams with the same name") {
@@ -90,6 +108,10 @@ TEST_CASE ("test schedule") {
     std::cout << rounds.size() << std::endl;
             CHECK(rounds.size() == 380);
 
+    Schedule testSche{6};
+    //should be 6(6-1) = 30
+            CHECK(testSche.getRounds().size() == 30);
+
 }
 
 TEST_CASE ("league execution test") {
@@ -99,4 +121,5 @@ TEST_CASE ("league execution test") {
             CHECK_NOTHROW(testLeague.getLeagueSchedule().getRounds());
             CHECK_NOTHROW(testLeague.executeLeagueGames());
             CHECK_NOTHROW(testLeague.displayScores(1));
+            CHECK_NOTHROW(testLeague.displayScores(4));
 }

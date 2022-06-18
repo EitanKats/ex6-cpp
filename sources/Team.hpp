@@ -19,15 +19,17 @@ namespace ex6 {
         int loseCounter = 0;
         int totalPointsScored = 0;
         int totalOpponentScores = 0;
+        int totalWins = 0;
+        int totalLosses = 0;
+
+        void validateName();
+
     public:
+
         int getWinStreak() const;
 
         int getLoseStreak() const;
 
-    private:
-        int totalWins = 0;
-        int totalLosses = 0;
-    public:
         const std::string &getTeamName() const;
 
         Team(double talent_level, std::string teamName);
